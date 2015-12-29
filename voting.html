@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+    <script>
+      var randomTesturl="https://media.ccc.de/public/conferences/78";
+      var getVotesUrl="https://script.google.com/macros/s/AKfycbyPTyCyN4okcbjQ4-TL9K3JaeUNv-6agQ16cg9AE4Cdrq94KJOS/exec";
+      var videoVotes = {};
+
+      $.urlParam = function(name){
+          var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+          if (results==null){
+             return null;
+          }
+          else{
+             return results[1] || 0;
+          }
+      }
+
+      $( document ).ready(function() {
+        var uid = $.urlParam('uid');
+        $.get(getVotesUrl+'?uid='+uid, function(data) {
+          var keys = Object.keys(data.votes);
+          for(var i in keys) {
+            voteForVideo(keys[i]);
+            updateButtonText();
+          }
+          $('#email').val(data.email);
+        });
+
+        var randomizedList = [];
+        /*
+        while(data.events.length > 0) {
+          var randomnumber = Math.floor((Math.random() * data.events.length));
+
+        }
+        */
+        //TODO: randomize data.events
+
+        $.get(randomTesturl, function( data ) {
+          //$( ".result" ).html( data );
+          //$("<p>"+data.events.length+"</p>").appendTo('#loltest');
+          //alert( "Load was performed." );
+          // style="background: #e7a61a;"
+          $.each(data.events, function(i, obj) {
+            var panel = $('<div class="selectioncontainer panel panel-default"></div>');
+            var header = $('<div class="panel-heading"></div>');
+            $('<div class="row"><div class="col-md-12" id="header" style="margin-left: 20px"><b>'+obj.title+'</b></div></div>').appendTo(header);
+            $('<div class="row"><div class="col-md-12" id="subtitle" style="margin-left: 20px"><i>'+getCorrectedText(obj.subtitle)+'</i></div></div>').appendTo(header);
+            header.appendTo(panel);
+            var panelBody = $('<div class="panel-body"></div>"');
+            $('<div class="row"><div class="col-md-2" id="image" style="margin-left: 20px"><img src="'+obj.thumb_url+'"/></div><div class="col-md-8" id="description">'+getCorrectedText(obj.description)+'</div><div class="col-md-1 vote"><button class="btn btn-primary video-vote" id="vote_'+obj.guid+'" data-videoid="'+obj.guid+'" role="button">'+voteButtonText()+'</button></div></div>').appendTo(panelBody);
+            panelBody.appendTo(panel);
+            panel.appendTo('#main');
+          });
+        });
+
+        $('#main').on('click', '.video-vote:not(.btn-default)', function(e) {
+          voteForVideo($(e.target).data('videoid'));
+        });
+
+        $('#main').on('click', '.video-vote:not(.btn-primary)', function(e) {
+          unVoteForVideo($(e.target).data('videoid'));
+        });
+
+        $('#votesubmit').on('submit', function(e) {
+          e.preventDefault();
+          var form = $(e.target);
+
+          $.ajax({url: form.attr('action'), method:'post', data:{email:$('#email').val(), votes:JSON.stringify(videoVotes)}});
+        });
+      });
+
+      function getCorrectedText(text) {
+          if(text == null) {
+            return '';
+          }
+          return text;
+      }
+
+      function voteForVideo(videoUid) {
+        videoVotes[videoUid] = numberOfVideoVotes()+1;
+        $('#vote_'+videoUid).removeClass('btn-primary');
+        $('#vote_'+videoUid).addClass('btn-default');
+        updateButtonText();
+      }
+
+      function unVoteForVideo(videoUid) {
+        var previousPosition = videoVotes[videoUid];
+        delete videoVotes[videoUid];
+        $('#vote_'+videoUid).addClass('btn-primary');
+        $('#vote_'+videoUid).removeClass('btn-default');
+        updateButtonText();
+        updateAlreadyVotedButtons(previousPosition);
+      }
+
+      function voteButtonText() {
+        var l = numberOfVideoVotes();
+        return (l+1)+'. Platz';
+      }
+
+      function numberOfVideoVotes() {
+        return Object.keys(videoVotes).length;
+      }
+
+      function updateButtonText() {
+        $('.video-vote:not(.btn-default)').html(voteButtonText());
+      }
+
+      function updateAlreadyVotedButtons(previousPosition) {
+        $.each(videoVotes, function(key, value) {
+          if(value > previousPosition) {
+            videoVotes[key]--;
+            $('#vote_'+key).html(videoVotes[key]+'. Platz');
+          }
+        });
+      }
+
+
+    </script>
+  </head>
+    <body>
+      <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+          <form id="votesubmit" action="https://script.google.com/macros/s/AKfycbxawb3ZjEvSqHK_6ocDIy-8wQjHDT-DtAH0607rtMaXVdc9AQ/exec" method="post" class="navbar-form navbar-left">
+          <div class="form-group">
+            <input type="text" class="form-control" name="email" id="email" size="50" placeholder="Email">
+          </div>
+          <input type="hidden" name="loltest" value=JSON.stringify(videoVotes);>
+          <span class="glyphicon glyphicon-question-sign" title="Mithilfe der Adresse kannst Du auch nachher das Ranking ändern" aria-hidden="false"></span>
+          <button type="submit" formmethod="post" class="btn btn-default">Abstimmen</button>
+        </form>
+        <a class="navbar-brand" href="#">Ergebnis</a>
+        </div>
+      </nav>
+      <div id='main' style="padding: 50px; padding-top: 60px;">
+      </div>
+    </body>
+</html>
