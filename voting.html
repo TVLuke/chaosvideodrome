@@ -13,7 +13,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
     <script>
-      var randomTesturl="https://media.ccc.de/public/conferences/78";
+      var eventurl="https://media.ccc.de/public/conferences/78";
       var getVotesUrl="https://script.google.com/macros/s/AKfycbyPTyCyN4okcbjQ4-TL9K3JaeUNv-6agQ16cg9AE4Cdrq94KJOS/exec";
       var videoVotes = {};
 
@@ -47,11 +47,7 @@
         */
         //TODO: randomize data.events
 
-        $.get(randomTesturl, function( data ) {
-          //$( ".result" ).html( data );
-          //$("<p>"+data.events.length+"</p>").appendTo('#loltest');
-          //alert( "Load was performed." );
-          // style="background: #e7a61a;"
+        $.get(eventurl, function( data ) {
           $.each(data.events, function(i, obj) {
             var panel = $('<div class="selectioncontainer panel panel-default"></div>');
             var header = $('<div class="panel-heading"></div>');
