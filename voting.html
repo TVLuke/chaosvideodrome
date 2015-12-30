@@ -78,7 +78,7 @@
       });
 
       function getVideoId(videoUrl) {
-        return videoUrl.split('/\//g')[(videoUrl.split('/\//g').length)-1]
+        return videoUrl.split(/\//g)[(videoUrl.split(/\//g).length)-1]
       }
 
       function getCorrectedText(text) {
