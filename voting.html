@@ -41,16 +41,19 @@
         }
 
         /*
-        while(data.events.length > 0) {
-          var randomnumber = Math.floor((Math.random() * data.events.length));
-          randomizedList.push(data.events[randomnumber]);
-        }
+
         */
         //TODO: randomize data.events
 
         $.get(eventurl, function( data ) {
 
           var randomizedList = [];
+
+          while(data.events.length > 0) {
+            var randomnumber = Math.floor((Math.random() * data.events.length));
+            randomizedList.push(data.events[randomnumber]);
+            data.events.shift();
+          }
 
           $.each(data.events, function(i, obj) {
             var panel = $('<div class="selectioncontainer panel panel-default"></div>');
