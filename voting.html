@@ -55,7 +55,7 @@
             data.events.shift();
           }
 
-          $.each(data.events, function(i, obj) {
+          $.each(drandomizedList, function(i, obj) {
             var panel = $('<div class="selectioncontainer panel panel-default"></div>');
             var header = $('<div class="panel-heading"></div>');
             $('<div class="row"><div class="col-md-12" id="header" style="margin-left: 20px"><b>'+obj.title+'</b></div></div>').appendTo(header);
