@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <meta charset="utf-8">
   <head>
@@ -37,8 +36,6 @@
               updateButtonText();
             }
             $('#email').val(data.email);
-
-            var randomizedList = [];
           });
         }
 
@@ -51,6 +48,9 @@
         //TODO: randomize data.events
 
         $.get(eventurl, function( data ) {
+
+          var randomizedList = [];
+
           $.each(data.events, function(i, obj) {
             var panel = $('<div class="selectioncontainer panel panel-default"></div>');
             var header = $('<div class="panel-heading"></div>');
