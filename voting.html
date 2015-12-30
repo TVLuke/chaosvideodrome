@@ -48,7 +48,7 @@
               for(var i in keys) {
                 voteForVideo(keys[i]);
                 updateButtonText();
-                for(var j=0; j<randomizedList.length; j++) {
+                for(var j=randomizedList.length-1; j>=0; j--) {
                   if(!(randomizedList[j].url === undefined) && getVideoId(randomizedList[j].url) == keys[i]) {
                     startelements.push(data.votes[keys[i]]);
                     alert(JSON.stringify(data.votes[keys[i]]));
