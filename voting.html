@@ -16,6 +16,7 @@
       var eventurl="https://media.ccc.de/public/conferences/78";
       var getVotesUrl="https://script.google.com/macros/s/AKfycbyPTyCyN4okcbjQ4-TL9K3JaeUNv-6agQ16cg9AE4Cdrq94KJOS/exec";
       var videoVotes = {};
+      var randomizedList = [];
 
       $.urlParam = function(name){
           var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
@@ -30,8 +31,6 @@
       $( document ).ready(function() {
 
         $.get(eventurl, function( data ) {
-
-          var randomizedList = [];
 
           while(data.events.length > 0) {
             var randomnumber = Math.floor((Math.random() * data.events.length));
