@@ -64,7 +64,7 @@
                     console.log(randomizedList);
                     $.each(randomizedList, function(j, obj) {
                       //alert("..."+obj.url);
-                      if(getVideoId(obj.url) == key) {
+                      if(!(obj == undefined) && getVideoId(obj.url) == key) {
                         startelements.push(obj);
                         alert(JSON.stringify(obj));
                         alert(startelements.length);
