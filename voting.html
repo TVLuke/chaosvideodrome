@@ -57,8 +57,9 @@
                   if(data.votes[key] == (i+1)) {
                     var vidId = key;
                     alert((i+1)+": "+vidId);
+                    alert(getVideoId(JSON.stringify(randomizedList));
                     for(var j=randomizedList.length-1; j>=0; j--) {
-                      alert(getVideoId(randomizedList[j].url));
+
                       if(!(randomizedList[j] === undefined) && getVideoId(randomizedList[j].url) == key) {
                         startelements.push(randomizedList[j]);
                         alert(JSON.stringify(randomizedList[j]));
