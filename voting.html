@@ -49,7 +49,7 @@
                 voteForVideo(keys[i]);
                 updateButtonText();
                 for(var i=0; i<randomizedList.length; i++) {
-                  if(getVideoId(randomizedList.url) = keys[i]) {
+                  if(getVideoId(randomizedList[i].url) == keys[i]) {
                     startelements.push(keys[i]);
                     randomizedList = randomizedList.splice(i, 1);
                   }
