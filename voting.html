@@ -30,7 +30,7 @@
       }
 
       $( document ).ready(function() {
-
+        alert("a");
         $.get(eventurl, function( data ) {
           /*
           alert("a");
@@ -73,7 +73,7 @@
                 randomizedBackup.push(randomizedList);
                 randomizedList = randomizedBackup;
               }
-              
+
               $('#email').val(data.email);
               printList();
             });
@@ -83,6 +83,7 @@
           */
         });
 
+        /*
         $('#main').on('click', '.video-vote:not(.btn-default)', function(e) {
           voteForVideo($(e.target).data('videoid'));
         });
@@ -95,8 +96,9 @@
           e.preventDefault();
           var form = $(e.target);
 
-        $.ajax({url: form.attr('action'), method:'post', data:{email:$('#email').val(), votes:JSON.stringify(videoVotes)}});
-      });
+          $.ajax({url: form.attr('action'), method:'post', data:{email:$('#email').val(), votes:JSON.stringify(videoVotes)}});
+        });
+        */
     });
 
       function printList() {
