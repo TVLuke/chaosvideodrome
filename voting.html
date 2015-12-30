@@ -35,6 +35,7 @@
           alert("a");
           var events = data.events;
           alert(data.events.length);
+          Console.print(events);
           while(events.length > 0) {
             var randomnumber = Math.floor((Math.random() * events.length));
             randomizedList.push(events[randomnumber]);
@@ -59,8 +60,8 @@
                   if(data.votes[key] == (i+1)) {
                     var vidId = key;
                     alert((i+1)+": "+vidId);
-                    $.each(randomizedList, function(eventkey, listObj) {
-                      alert(JSON.stringify(listObj));
+                    $.each(randomizedList, function(listObj) {
+                      alert("..."+JSON.stringify(listObj));
                       /*
                       if(!(listObj == []) && getVideoId(listObj.url) == key) {
                         startelements.push(listObj);
