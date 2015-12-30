@@ -60,8 +60,7 @@
                   var key = keys[k];
                   alert(key+" "+voteData.votes[key]);
                   if(voteData.votes[key] == (i+1)) {
-                    var vidId = key;
-                    alert((i+1)+": "+vidId);
+                    alert((i+1)+": "+key);
                     console.log(randomizedList);
                     $.each(randomizedList, function(j, obj) {
                       if(!(obj == undefined) && getVideoId(obj.url) == key) {
@@ -78,8 +77,8 @@
                     });
                   }
                 }
-                randomizedList = startelements.concat(randomizedList);
               }
+              randomizedList = startelements.concat(randomizedList);
               $('#email').val(data.email);
               printList(randomizedList);
               $.each(startelements, function(j, obj) {
