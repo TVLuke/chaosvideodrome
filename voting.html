@@ -55,16 +55,21 @@
               $.get(getVotesUrl+'?uid='+uid, function(data) {
                 var keys = Object.keys(data.votes);
                 var startelements = [];
-                var randomizedBackup = randomizedList
+                var randomizedBackup;
                 for(var i in keys) {
                   voteForVideo(keys[i]);
                   updateButtonText();
                   //TODO: move to top.
                   for(var i=0; i<randomizedList.length; i++) {
-
+                    if(getVideoId(randomizedList.url) = keys[i]) {
+                      startelements.push(keys[i]);
+                      randomizedList = randomizedList.splice(i, 1);
+                    }
                   }
                 }
-                randomizedList.push()
+                randomizedBackup.push(startelements);
+                randomizedBackup.push(randomizedList);
+                randomizedList = randomizedBackup;
                 $('#email').val(data.email);
               });
             }
