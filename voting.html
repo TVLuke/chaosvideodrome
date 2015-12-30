@@ -58,6 +58,7 @@
                     var vidId = key;
                     alert((i+1)+": "+vidId);
                     for(var j=randomizedList.length-1; j>=0; j--) {
+                      alert(getVideoId(randomizedList[j].url));
                       if(!(randomizedList[j] === undefined) && getVideoId(randomizedList[j].url) == key) {
                         startelements.push(randomizedList[j]);
                         alert(JSON.stringify(randomizedList[j]));
