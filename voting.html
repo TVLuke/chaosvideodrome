@@ -48,6 +48,7 @@
               //iterate through the votes
               for(var i=0; i<Object.keys(data.votes).length; i++) {
                 //if we find the i-st vote, put the id of the video into a variable
+                alert(data[keys[i]]);
                 if(data[keys[i]] == ""+(i+1)) {
                   var vidId = keys[i];
                   alert((i+1)+": "+vidId);
