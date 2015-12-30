@@ -28,23 +28,15 @@
       }
 
       $( document ).ready(function() {
-        /*
-        while(data.events.length > 0) {
-          var randomnumber = Math.floor((Math.random() * data.events.length));
-          randomizedList.push(data.events[randomnumber]);
-        }
-        */
-        //TODO: randomize data.events
-
         $.get(eventurl, function( data ) {
-
+          alert("ok.");
           var randomizedList = [];
           while(data.events.length > 0) {
             var randomnumber = Math.floor((Math.random() * data.events.length));
             randomizedList.push(data.events[randomnumber]);
             delete data.events[randomnumber];
           }
-
+          alert(randomizedList.length);
           $.each(randomizedList, function(i, obj) {
             var panel = $('<div class="selectioncontainer panel panel-default"></div>');
             var header = $('<div class="panel-heading"></div>');
