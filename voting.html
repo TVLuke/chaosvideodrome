@@ -62,12 +62,12 @@
                     for(var j=randomizedList.length-1; j>=0; j--) {
                       $.each(randomizedList, function(i, listObj) {
                         if(!(listObj === undefined) && getVideoId(listObj.url) == key) {
-                          startelements.push(randomizedList[j]);
-                          alert(JSON.stringify(randomizedList[j]));
+                          startelements.push(listObj);
+                          alert(JSON.stringify(listObj));
                           alert(startelements.length);
                           randomizedList = randomizedList.splice(j, 1);
                         }
-                      }
+                      });
                     }
                   }
                   randomizedBackup.push(startelements);
