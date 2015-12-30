@@ -59,7 +59,7 @@
                     alert((i+1)+": "+vidId);
                     $.each(randomizedList, function(eventkey, listObj) {
                       alert(JSON.stringify(listObj));
-                      if(!(listObj === undefined) && getVideoId(listObj.url) == key) {
+                      if(!(listObj == []) && getVideoId(listObj.url) == key) {
                         startelements.push(listObj);
                         alert(JSON.stringify(listObj));
                         alert(startelements.length);
