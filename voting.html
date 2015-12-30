@@ -54,14 +54,17 @@
             if(!(uid === undefined || uid == null)) {
               $.get(getVotesUrl+'?uid='+uid, function(data) {
                 var keys = Object.keys(data.votes);
+                var startelements = [];
+                var randomizedBackup = randomizedList
                 for(var i in keys) {
                   voteForVideo(keys[i]);
                   updateButtonText();
                   //TODO: move to top.
-                  for(var i=0; i<data.events.length; i++) {
+                  for(var i=0; i<randomizedList.length; i++) {
 
                   }
                 }
+                randomizedList.push()
                 $('#email').val(data.email);
               });
             }
@@ -147,7 +150,7 @@
           <span class="glyphicon glyphicon-question-sign" title="Mithilfe der Adresse kannst Du auch nachher das Ranking ändern" aria-hidden="false"></span>
           <button type="submit" formmethod="post" class="btn btn-default">Abstimmen</button>
         </form>
-        <a class="navbar-brand" href="http://tvluke.github.io/chaosvideodrome/results.html">Ergebnis</a>
+        <a class="navbar-brand" href="http://tvluke.github.io/congressEverywhen/results.html">Ergebnis</a>
         </div>
       </nav>
       <div id='main' style="padding: 50px; padding-top: 60px;">
