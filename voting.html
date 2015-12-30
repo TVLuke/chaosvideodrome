@@ -31,6 +31,13 @@
 
       $( document ).ready(function() {
         alert("a");
+        $.ajax({
+          url: eventurl,
+          dataType: 'jsonp',
+          success: function(json) {
+              alert("b");
+          }
+        });
         $.get(eventurl, function( data ) {
           /*
           alert("a");
