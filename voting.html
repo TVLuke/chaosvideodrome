@@ -35,7 +35,7 @@
             var randomnumber = Math.floor((Math.random() * data.events.length));
             alert(randomnumber);
             randomizedList.push(data.events[randomnumber]);
-            data.events = array.splice(data.events, 1);
+            data.events.shift();
             alert(randomizedList.length);
           }
 
@@ -64,7 +64,7 @@
             });
           }
 
-        }, "json");
+        });
 
         $('#main').on('click', '.video-vote:not(.btn-default)', function(e) {
           voteForVideo($(e.target).data('videoid'));
