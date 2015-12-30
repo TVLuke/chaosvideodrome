@@ -41,7 +41,7 @@
 
           var uid = $.urlParam('uid');
           if(!(uid === undefined || uid == null)) {
-            
+
             $.get(getVotesUrl+'?uid='+uid, function(data) {
               var keys = Object.keys(data.votes);
               var startelements = [];
@@ -50,6 +50,7 @@
                 voteForVideo(keys[i]);
                 updateButtonText();
                 for(var i=0; i<randomizedList.length; i++) {
+                  alert(JSON.stringify(randomizedList[i]));
                   if(getVideoId(randomizedList[i].url) == keys[i]) {
                     startelements.push(keys[i]);
                     randomizedList = randomizedList.splice(i, 1);
