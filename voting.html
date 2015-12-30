@@ -32,7 +32,6 @@
 
         $.get(eventurl, function( data ) {
           var randomizedList = [];
-          var randomizedBackup = [];
           alert("a");
           var events = data.events;
           alert(data.events.length);
@@ -42,7 +41,10 @@
             console.log(events[randomnumber]);
             randomizedList.push(events[randomnumber]);
             randomizedBackup.push(events[randomnumber]);
-            data.events.shift();
+            var index = events.indexOf(obj);
+            if (index > -1) {
+                events.splice(index, 1);
+            }
           }
           alert(randomizedList.length);
           console.log(randomizedList);
@@ -72,9 +74,9 @@
                         startelements.push(obj);
                         alert(JSON.stringify(obj));
                         alert(randomizedList.length);
-                        var index = randomizedBackup.indexOf(obj);
+                        var index = randomizedList.indexOf(obj);
                         if (index > -1) {
-                            randomizedBackup.splice(index, 1);
+                            randomizedList.splice(index, 1);
                         }
                         console.log(".a.a.a."+randomizedList);
                       }
