@@ -51,6 +51,8 @@
                 for(var j=0; j<randomizedList.length; j++) {
                   if(!(randomizedList[j].url === undefined) && getVideoId(randomizedList[j].url) == keys[i]) {
                     startelements.push(data.votes[keys[i]]);
+                    alert(JSON.stringify(data.votes[keys[i]]));
+                    alert(startelements.length);
                     randomizedList = randomizedList.splice(j, 1);
                   }
                 }
