@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+<head>
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+  <script>
+    var eventurl = "https://media.ccc.de/public/conferences/78";
+    var votesurl = "https://script.google.com/macros/s/AKfycbx4CSdrTiaZEUbuQcxci7n9zzaPusWVL3-usBVIjc05CseGYDA/exec";
+    var videourl = "https://media.ccc.de/public/events/"
+
+    var graphArray = [];
+
+    function getStuff() {
+      var eventdata;
+
+      $.get(eventurl, function(data) {
+        eventData = data;
+
+        $.get(votesurl, function(votes) {
+          choiceArray = new Array(Object.keys(votes.dist).length);
+          choiceArray[0] = 'Platz';
+          var number = 1;
+          $.each(votes.dist, function(i, voteDist) {
+            choiceArray[number] = ''+number+'. Platz';
+            number++;
+          });
+          graphArray.push(choiceArray);
+          $.each(votes.dist, function(i, voteDist) {
+            eventTitle = '';
+            $.get(videourl+i, function(video){
+              if(i == votes.winner) {
+                $('<div class="page-header"><h1>And the winner is...</h1></div>').appendTo('#winner');
+                addWinnerToPage(video);
+              }
+              var barArray = [];
+              barArray.push(video.title);
+              //itterate through
+              for(var j=1; j<number; j++) {
+                barArray.push(voteDist[j])
+              }
+              graphArray.push(barArray);
+              drawBasic();
+            });
+          });
+        });
+      });
+    }
+
+    function addWinnerToPage(video) {
+      var panel = $('<div class="selectioncontainer panel panel-default"></div>');
+      var header = $('<div class="panel-heading"></div>');
+      $('<div class="row"><div class="col-md-12" id="header" style="margin-left: 20px"><b>'+video.title+'</b></div></div>').appendTo(header);
+      $('<div class="row"><div class="col-md-12" id="subtitle" style="margin-left: 20px"><i>'+getCorrectedText(video.subtitle)+'</i></div></div>').appendTo(header);
+      header.appendTo(panel);
+      var panelBody = $('<div class="panel-body"></div>"');
+      $('<div class="row"><div class="col-md-2" id="image" style="margin-left: 20px"><img src="'+video.thumb_url+'"/></div><div class="col-md-8" id="description">'+getCorrectedText(video.description)+'</div></div>').appendTo(panelBody);
+      panelBody.appendTo(panel);
+      panel.appendTo('#winner');
+    }
+
+    function getCorrectedText(text) {
+        if(text == null) {
+          return '';
+        }
+        return text;
+    }
+
+    google.load('visualization', '1', {packages: ['corechart', 'bar']});
+    google.setOnLoadCallback(getStuff);
+
+    function drawBasic() {
+      var data = google.visualization.arrayToDataTable(graphArray);
+
+          var options = {
+            title: 'Stimmverteilung',
+            chartArea: {width: '50%'},
+            hAxis: {
+              title: 'Anzahl Stimmen',
+              minValue: 0
+            },
+            vAxis: {
+              title: 'Vorträge'
+            },
+            isStacked: true
+          };
+
+          var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+
+          chart.draw(data, options);
+        }
+  </script>
+</head>
+<body>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+    <a class="navbar-brand" href="http://tvluke.github.io/chaosvideodrome/voting.html">Abstimmen</a>
+    </div>
+  </nav>
+  <div id="winner" style="padding: 50px; padding-top: 70px;"></div>
+  <div id="chart_div" style="padding-left: 50px;"></div>
+</body>
+</html>
