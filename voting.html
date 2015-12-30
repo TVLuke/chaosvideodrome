@@ -64,10 +64,12 @@
                     console.log(randomizedList);
                     $.each(randomizedList, function(j, obj) {
                       if(!(obj == undefined) && getVideoId(obj.url) == key) {
+                        alert(i);
+                        alert(k);
                         alert(obj.title);
                         startelements.push(obj);
                         alert(JSON.stringify(obj));
-                        alert(startelements.length);
+                        alert(randomizedList.length);
                         var index = randomizedBackup.indexOf(obj);
                         if (index > -1) {
                             randomizedBackup.splice(index, 1);
