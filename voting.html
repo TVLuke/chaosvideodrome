@@ -60,12 +60,14 @@
                     alert((i+1)+": "+vidId);
                     $.each(randomizedList, function(eventkey, listObj) {
                       alert(JSON.stringify(listObj));
+                      /*
                       if(!(listObj == []) && getVideoId(listObj.url) == key) {
                         startelements.push(listObj);
                         alert(JSON.stringify(listObj));
                         alert(startelements.length);
                         randomizedList = randomizedList.splice(j, 1);
                       }
+                      */
                     });
                   }
                   randomizedBackup.push(startelements);
