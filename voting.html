@@ -32,7 +32,8 @@
       $( document ).ready(function() {
 
         $.get(eventurl, function( data ) {
-
+          /*
+          alert("a");
           while(data.events.length > 0) {
             var randomnumber = Math.floor((Math.random() * data.events.length));
             randomizedList.push(data.events[randomnumber]);
@@ -72,14 +73,15 @@
                 randomizedBackup.push(randomizedList);
                 randomizedList = randomizedBackup;
               }
-              */
+              
               $('#email').val(data.email);
               printList();
             });
           } else {
             printList();
           }
-        }, "json");
+          */
+        });
 
         $('#main').on('click', '.video-vote:not(.btn-default)', function(e) {
           voteForVideo($(e.target).data('videoid'));
