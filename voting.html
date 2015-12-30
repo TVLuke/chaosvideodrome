@@ -74,9 +74,7 @@
                       */
                     });
                   }
-                  randomizedBackup.concat(startelements);
-                  randomizedBackup.concat(randomizedList);
-                  randomizedList = randomizedBackup;
+                  randomizedList = startelements.concat(randomizedList);
                 }
               }
               $('#email').val(data.email);
