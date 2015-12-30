@@ -49,7 +49,7 @@
 
             $.get(getVotesUrl+'?uid='+uid, function(voteData) {
               var startelements = [];
-              var randomizedBackup = [];
+              var randomizedBackup = randomizedList;
               var keys = Object.keys(voteData.votes);
               alert(Object.keys(voteData.votes));
               //iterate through the votes
@@ -68,9 +68,9 @@
                         startelements.push(obj);
                         alert(JSON.stringify(obj));
                         alert(startelements.length);
-                        var index = randomizedList.indexOf(obj);
+                        var index = randomizedBackup.indexOf(obj);
                         if (index > -1) {
-                            randomizedList.splice(index, 1);
+                            randomizedBackup.splice(index, 1);
                         }
                         console.log(".a.a.a."+randomizedList);
                       }
@@ -78,7 +78,7 @@
                   }
                 }
               }
-              randomizedList = startelements.concat(randomizedList);
+              randomizedList = startelements.concat(randomizedBackup);
               $('#email').val(data.email);
               printList(randomizedList);
               $.each(startelements, function(j, obj) {
