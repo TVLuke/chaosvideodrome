@@ -49,11 +49,10 @@
               for(var i in keys) {
                 voteForVideo(keys[i]);
                 updateButtonText();
-                for(var i=0; i<randomizedList.length; i++) {
-                  alert(JSON.stringify(randomizedList[i]));
-                  if(getVideoId(randomizedList[i].url) == keys[i]) {
+                for(var j=0; j<randomizedList.length; j++) {
+                  if(getVideoId(randomizedList[j].url) == keys[i]) {
                     startelements.push(keys[i]);
-                    randomizedList = randomizedList.splice(i, 1);
+                    randomizedList = randomizedList.splice(j, 1);
                   }
                 }
                 randomizedBackup.push(startelements);
