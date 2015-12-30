@@ -38,7 +38,7 @@
             randomizedList.push(data.events[randomnumber]);
             data.events.shift();
           }
-
+          alert(randomizedList.length);
           var uid = $.urlParam('uid');
           if(!(uid === undefined || uid == null)) {
 
@@ -57,10 +57,10 @@
                   if(data.votes[key] == (i+1)) {
                     var vidId = key;
                     alert((i+1)+": "+vidId);
-                    alert(JSON.stringify(randomizedList));
+                    alert(randomizedList);
                     for(var j=randomizedList.length-1; j>=0; j--) {
 
-                      if(!(randomizedList[j] === undefined) && getVideoId(randomizedList[j].url) == key) {
+                      if(!(randomizedList[j] === undefined) && getVideoId((randomizedList[j]).url) == key) {
                         startelements.push(randomizedList[j]);
                         alert(JSON.stringify(randomizedList[j]));
                         alert(startelements.length);
