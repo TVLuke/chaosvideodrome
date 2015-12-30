@@ -43,42 +43,38 @@
           if(!(uid === undefined || uid == null)) {
 
             $.get(getVotesUrl+'?uid='+uid, function(data) {
+              var startelements = [];
+              var randomizedBackup = [];
               var keys = Object.keys(data.votes);
               alert(Object.keys(data.votes));
               //iterate through the votes
               var keyslength = Object.keys(data.votes).length;
               alert(keyslength);
               for(var i=0; i<keyslength ; i++) {
-                //if we find the i-st vote, put the id of the video into a variable
-                var key = keys[i];
-                alert(key+" "+data.votes[key]);
-                if(data.votes.key == ""+(i+1)) {
-                  var vidId = keys[i];
-                  alert((i+1)+": "+vidId);
-                }
-
-              }
-              /*
-              var startelements = [];
-              var randomizedBackup = [];
-              for(var i in keys) {
-                voteForVideo(keys[i]);
-                updateButtonText();
-                for(var j=randomizedList.length-1; j>=0; j--) {
-                  if(!(randomizedList[j] === undefined) && getVideoId(randomizedList[j].url) == keys[i]) {
-                    startelements.push(data.votes[keys[i]]);
-                    alert(JSON.stringify(data.votes[keys[i]]));
-                    alert(startelements.length);
-                    randomizedList = randomizedList.splice(j, 1);
+                for(var k=0; k<keyslength ; k++) {
+                  var key = keys[k];
+                  alert(key+" "+data.votes[key]);
+                  if(data.votes[key] == (i+1)) {
+                    var vidId = key;
+                    alert((i+1)+": "+vidId);
+                    for(var j=randomizedList.length-1; j>=0; j--) {
+                      if(!(randomizedList[j] === undefined) && getVideoId(randomizedList[j].url) == key) {
+                        startelements.push(randomizedList[j]);
+                        alert(JSON.stringify(randomizedList[j]]));
+                        alert(startelements.length);
+                        randomizedList = randomizedList.splice(j, 1);
+                      }
+                    }
                   }
+                  randomizedBackup.push(startelements);
+                  randomizedBackup.push(randomizedList);
+                  randomizedList = randomizedBackup;
                 }
-                randomizedBackup.push(startelements);
-                randomizedBackup.push(randomizedList);
-                randomizedList = randomizedBackup;
               }
-              */
               $('#email').val(data.email);
               printList();
+              voteForVideo(keys[i]);
+              updateButtonText();
             });
           } else {
             printList();
