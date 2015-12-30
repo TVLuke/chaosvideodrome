@@ -32,6 +32,7 @@
 
         $.get(eventurl, function( data ) {
           var randomizedList = [];
+          var randomizedBackup = [];
           alert("a");
           var events = data.events;
           alert(data.events.length);
@@ -40,6 +41,7 @@
             var randomnumber = Math.floor((Math.random() * events.length));
             console.log(events[randomnumber]);
             randomizedList.push(events[randomnumber]);
+            randomizedBackup.push(events[randomnumber]);
             data.events.shift();
           }
           alert(randomizedList.length);
@@ -49,7 +51,6 @@
 
             $.get(getVotesUrl+'?uid='+uid, function(voteData) {
               var startelements = [];
-              var randomizedBackup = randomizedList;
               var keys = Object.keys(voteData.votes);
               alert(Object.keys(voteData.votes));
               //iterate through the votes
@@ -66,6 +67,7 @@
                       if(!(obj == undefined) && getVideoId(obj.url) == key) {
                         alert(i);
                         alert(k);
+                        alert(j);
                         alert(obj.title);
                         startelements.push(obj);
                         alert(JSON.stringify(obj));
