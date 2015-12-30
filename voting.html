@@ -55,7 +55,7 @@
             $('<div class="row"><div class="col-md-12" id="subtitle" style="margin-left: 20px"><i>'+getCorrectedText(obj.subtitle)+'</i></div></div>').appendTo(header);
             header.appendTo(panel);
             var panelBody = $('<div class="panel-body"></div>"');
-            $('<div class="row"><div class="col-md-2" id="image" style="margin-left: 20px"><img src="'+obj.thumb_url+'"/></div><div class="col-md-8" id="description">'+getCorrectedText(obj.description)+'</div><div class="col-md-1 vote"><button class="btn btn-primary video-vote" id="vote_'+obj.guid+'" data-videoid="'+obj.guid+'" role="button">'+voteButtonText()+'</button></div></div>').appendTo(panelBody);
+            $('<div class="row"><div class="col-md-2" id="image" style="margin-left: 20px"><img src="'+obj.thumb_url+'"/></div><div class="col-md-8" id="description">'+getCorrectedText(obj.description)+'</div><div class="col-md-1 vote"><button class="btn btn-primary video-vote" id="vote_'+getVideoId(obj.url)+'" data-videoid="'+getVideoId(obj.url)+'" role="button">'+voteButtonText()+'</button></div></div>').appendTo(panelBody);
             panelBody.appendTo(panel);
             panel.appendTo('#main');
           });
@@ -76,6 +76,10 @@
           $.ajax({url: form.attr('action'), method:'post', data:{email:$('#email').val(), votes:JSON.stringify(videoVotes)}});
         });
       });
+
+      function getVideoId(videoUrl) {
+        return videoUrl.split('/\//g')[(videoUrl.split('/\//g').length)-1]
+      }
 
       function getCorrectedText(text) {
           if(text == null) {
