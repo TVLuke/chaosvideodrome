@@ -69,16 +69,19 @@
                         alert(JSON.stringify(obj));
                         alert(startelements.length);
                         randomizedList = randomizedList.splice(j, 1);
+
                       }
                     });
                   }
                 }
                 randomizedList = startelements.concat(randomizedList);
-                voteForVideo(keys[i]);
-                updateButtonText();
               }
               $('#email').val(data.email);
               printList(randomizedList);
+              $.each(startelements, function(j, obj) {
+                voteForVideo(getVideoId(obj.url));
+                updateButtonText();
+              }
             });
           } else {
             printList(randomizedList);
