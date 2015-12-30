@@ -35,6 +35,7 @@
           alert("a");
           while(data.events.length > 0) {
             var randomnumber = Math.floor((Math.random() * data.events.length));
+            alert(data.events[randomnumber]);
             randomizedList.push(data.events[randomnumber]);
             data.events.shift();
           }
@@ -59,12 +60,13 @@
                     alert((i+1)+": "+vidId);
                     alert(randomizedList);
                     for(var j=randomizedList.length-1; j>=0; j--) {
-                      alert(randomizedList[j]);
-                      if(!(randomizedList[j] === undefined) && getVideoId((randomizedList[j]).url) == key) {
-                        startelements.push(randomizedList[j]);
-                        alert(JSON.stringify(randomizedList[j]));
-                        alert(startelements.length);
-                        randomizedList = randomizedList.splice(j, 1);
+                      $.each(randomizedList, function(i, listObj) {
+                        if(!(listObj === undefined) && getVideoId(listObj.url) == key) {
+                          startelements.push(randomizedList[j]);
+                          alert(JSON.stringify(randomizedList[j]));
+                          alert(startelements.length);
+                          randomizedList = randomizedList.splice(j, 1);
+                        }
                       }
                     }
                   }
