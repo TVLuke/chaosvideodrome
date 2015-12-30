@@ -29,7 +29,7 @@
 
       $( document ).ready(function() {
         var uid = $.urlParam('uid');
-        if(!(uid === undefined)) {
+        if(!(uid === undefined || uid == null)) {
           $.get(getVotesUrl+'?uid='+uid, function(data) {
             var keys = Object.keys(data.votes);
             for(var i in keys) {
