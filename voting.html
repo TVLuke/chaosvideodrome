@@ -63,8 +63,8 @@
                     alert((i+1)+": "+vidId);
                     console.log(randomizedList);
                     $.each(randomizedList, function(j, obj) {
-                      //alert("..."+obj.url);
                       if(!(obj == undefined) && getVideoId(obj.url) == key) {
+                        alert(obj.title);
                         startelements.push(obj);
                         alert(JSON.stringify(obj));
                         alert(startelements.length);
@@ -72,8 +72,8 @@
                       }
                     });
                   }
-                  randomizedList = startelements.concat(randomizedList);
                 }
+                randomizedList = startelements.concat(randomizedList);
                 voteForVideo(keys[i]);
                 updateButtonText();
               }
