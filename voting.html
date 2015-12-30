@@ -46,21 +46,22 @@
           var uid = $.urlParam('uid');
           if(!(uid === undefined || uid == null)) {
 
-            $.get(getVotesUrl+'?uid='+uid, function(data) {
+            $.get(getVotesUrl+'?uid='+uid, function(voteData) {
               var startelements = [];
               var randomizedBackup = [];
-              var keys = Object.keys(data.votes);
-              alert(Object.keys(data.votes));
+              var keys = Object.keys(voteData.votes);
+              alert(Object.keys(voteData.votes));
               //iterate through the votes
-              var keyslength = Object.keys(data.votes).length;
+              var keyslength = Object.keys(voteData.votes).length;
               alert(keyslength);
               for(var i=0; i<keyslength ; i++) {
                 for(var k=0; k<keyslength ; k++) {
                   var key = keys[k];
-                  alert(key+" "+data.votes[key]);
-                  if(data.votes[key] == (i+1)) {
+                  alert(key+" "+voteData.votes[key]);
+                  if(voteData.votes[key] == (i+1)) {
                     var vidId = key;
                     alert((i+1)+": "+vidId);
+                    console.log(randomizedList);
                     $.each(randomizedList, function(j, obj) {
                       alert("..."+obj.url);
                       /*
