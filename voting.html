@@ -66,6 +66,7 @@
           } else {
             printList();
           }
+        });
 
         $('#main').on('click', '.video-vote:not(.btn-default)', function(e) {
           voteForVideo($(e.target).data('videoid'));
@@ -79,9 +80,9 @@
           e.preventDefault();
           var form = $(e.target);
 
-          $.ajax({url: form.attr('action'), method:'post', data:{email:$('#email').val(), votes:JSON.stringify(videoVotes)}});
-        });
+        $.ajax({url: form.attr('action'), method:'post', data:{email:$('#email').val(), votes:JSON.stringify(videoVotes)}});
       });
+    });
 
       function printList() {
         $.each(randomizedList, function(i, obj) {
