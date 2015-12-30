@@ -44,6 +44,16 @@
             $.get(getVotesUrl+'?uid='+uid, function(data) {
               var keys = Object.keys(data.votes);
               alert(Object.keys(data.votes));
+              //iterate through the votes
+              for(var i=0; i<Object.keys(data.votes).length; i++) {
+                //if we find the i-st vote, put the id of the video into a variable
+                if(data[keys[i]] == ""+(i+1)) {
+                  var vidId = keys[i];
+                  alert((i+1)+": "+vidId);
+                }
+
+              }
+              /*
               var startelements = [];
               var randomizedBackup = [];
               for(var i in keys) {
@@ -61,6 +71,7 @@
                 randomizedBackup.push(randomizedList);
                 randomizedList = randomizedBackup;
               }
+              */
               $('#email').val(data.email);
               printList();
             });
