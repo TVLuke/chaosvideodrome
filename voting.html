@@ -43,7 +43,6 @@
           }
           alert(randomizedList.length);
           console.log(randomizedList);
-          printList();
           var uid = $.urlParam('uid');
           if(!(uid === undefined || uid == null)) {
 
@@ -62,8 +61,8 @@
                   if(data.votes[key] == (i+1)) {
                     var vidId = key;
                     alert((i+1)+": "+vidId);
-                    $.each(randomizedList, function(key, listObj) {
-                      alert("..."+JSON.stringify(listObj));
+                    $.each(randomizedList, function(j, obj) {
+                      alert("..."+obj.url);
                       /*
                       if(!(listObj == []) && getVideoId(listObj.url) == key) {
                         startelements.push(listObj);
