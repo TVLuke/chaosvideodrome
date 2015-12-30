@@ -30,16 +30,8 @@
       }
 
       $( document ).ready(function() {
-        alert("a");
-        $.ajax({
-          url: eventurl,
-          dataType: 'json',
-          success: function(json) {
-              alert("b");
-          }
-        });
-        //$.get(eventurl, function( data ) {
-          /*
+
+        $.get(eventurl, function( data ) {
           alert("a");
           while(data.events.length > 0) {
             var randomnumber = Math.floor((Math.random() * data.events.length));
@@ -80,17 +72,15 @@
                 randomizedBackup.push(randomizedList);
                 randomizedList = randomizedBackup;
               }
-
+              */
               $('#email').val(data.email);
               printList();
             });
           } else {
             printList();
           }
-          */
-        //});
+        });
 
-        /*
         $('#main').on('click', '.video-vote:not(.btn-default)', function(e) {
           voteForVideo($(e.target).data('videoid'));
         });
@@ -103,9 +93,8 @@
           e.preventDefault();
           var form = $(e.target);
 
-          $.ajax({url: form.attr('action'), method:'post', data:{email:$('#email').val(), votes:JSON.stringify(videoVotes)}});
-        });
-        */
+        $.ajax({url: form.attr('action'), method:'post', data:{email:$('#email').val(), votes:JSON.stringify(videoVotes)}});
+      });
     });
 
       function printList() {
