@@ -57,9 +57,8 @@
                   if(data.votes[key] == (i+1)) {
                     var vidId = key;
                     alert((i+1)+": "+vidId);
-                    alert(JSON.stringify(randomizedList));
                     $.each(randomizedList, function(eventkey, listObj) {
-                      alert(listObj);
+                      alert(JSON.stringify(listObj));
                       if(!(listObj === undefined) && getVideoId(listObj.url) == key) {
                         startelements.push(listObj);
                         alert(JSON.stringify(listObj));
