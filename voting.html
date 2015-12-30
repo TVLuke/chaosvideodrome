@@ -64,9 +64,9 @@
                     console.log(randomizedList);
                     $.each(randomizedList, function(j, obj) {
                       alert("..."+obj.url);
-                      if(getVideoId(listObj.url) == key) {
-                        startelements.push(listObj);
-                        alert(JSON.stringify(listObj));
+                      if(getVideoId(obj.url) == key) {
+                        startelements.push(obj);
+                        alert(JSON.stringify(obj));
                         alert(startelements.length);
                         randomizedList = randomizedList.splice(j, 1);
                       }
