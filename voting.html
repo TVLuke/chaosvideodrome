@@ -44,7 +44,7 @@
             $.get(getVotesUrl+'?uid='+uid, function(data) {
               var keys = Object.keys(data.votes);
               var startelements = [];
-              var randomizedBackup;
+              var randomizedBackup = [];
               for(var i in keys) {
                 voteForVideo(keys[i]);
                 updateButtonText();
@@ -54,10 +54,10 @@
                     randomizedList = randomizedList.splice(i, 1);
                   }
                 }
+                randomizedBackup.push(startelements);
+                randomizedBackup.push(randomizedList);
+                randomizedList = randomizedBackup;
               }
-              randomizedBackup.push(startelements);
-              randomizedBackup.push(randomizedList);
-              randomizedList = randomizedBackup;
               $('#email').val(data.email);
             });
           }
