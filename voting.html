@@ -64,23 +64,21 @@
                     console.log(randomizedList);
                     $.each(randomizedList, function(j, obj) {
                       alert("..."+obj.url);
-                      /*
-                      if(!(listObj == []) && getVideoId(listObj.url) == key) {
+                      if(getVideoId(listObj.url) == key) {
                         startelements.push(listObj);
                         alert(JSON.stringify(listObj));
                         alert(startelements.length);
                         randomizedList = randomizedList.splice(j, 1);
                       }
-                      */
                     });
                   }
                   randomizedList = startelements.concat(randomizedList);
                 }
+                voteForVideo(keys[i]);
+                updateButtonText();
               }
               $('#email').val(data.email);
               printList(randomizedList);
-              voteForVideo(keys[i]);
-              updateButtonText();
             });
           } else {
             printList(randomizedList);
