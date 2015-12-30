@@ -38,6 +38,7 @@
           console.log(events);
           while(events.length > 0) {
             var randomnumber = Math.floor((Math.random() * events.length));
+            console.console.log(events[randomnumber]);
             randomizedList.push(events[randomnumber]);
             data.events.shift();
           }
@@ -68,8 +69,11 @@
                         startelements.push(obj);
                         alert(JSON.stringify(obj));
                         alert(startelements.length);
-                        randomizedList = randomizedList.splice(j, 1);
-
+                        var index = array.indexOf(obj);
+                        if (index > -1) {
+                            randomizedList.splice(index, 1);
+                        }
+                        console.log(".a.a.a."+randomizedList);
                       }
                     });
                   }
