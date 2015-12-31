@@ -35,13 +35,14 @@
       $.ajax({
           url: eventurl,
           type: 'GET',
-          success: 'showEventData',
+          success: function(data) {
+            showEventData(data);
           },
           error: function(data) {
             hideProgress();
             var sadpanda = $('<div id="sadpanda" style="position: fixed; top: 50%; left: 50%; margin-left: -50px; margin-top: -50px;><scr img="sadpanda.png"/></div>')
             sadpanda.appendTo('#main');
-            $("#sadpanda").notify("Daten unvollständig", "error");
+            $("#sadpanda").notify("Daten konnten nicht angefordert werden...", "error");
           }
       });
 
