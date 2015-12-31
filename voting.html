@@ -99,8 +99,7 @@
         $('#votesubmit').on('submit', function(e) {
           e.preventDefault();
           var form = $(e.target);
-          alert($('#email').val());
-          if(isValidEmailAddress($('#email').val()) || Object.keys(videoVotes).length > 0) {
+          if(isValidEmailAddress($('#email').val()) && Object.keys(videoVotes).length > 0) {
             $.ajax({url: form.attr('action'), method:'post', data:{email:$('#email').val(), votes:JSON.stringify(videoVotes)}});
             $("#submitbutton").notify("Abgesendet", "success");
           } else {
