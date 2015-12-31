@@ -182,7 +182,7 @@
         $('#vote_'+videoUid).removeClass('btn-primary');
         $('#vote_'+videoUid).addClass('btn-default');
         updateButtonText();
-        updateAlreadyVotedButtons();
+        updateAlreadyVotedButtons(numberOfVideoVotes()+1);
       }
 
       function unVoteForVideo(videoUid) {
@@ -191,7 +191,7 @@
         $('#vote_'+videoUid).addClass('btn-primary');
         $('#vote_'+videoUid).removeClass('btn-default');
         updateButtonText();
-        updateAlreadyVotedButtons();
+        updateAlreadyVotedButtons(previousPosition);
       }
 
       function voteButtonText() {
@@ -208,10 +208,12 @@
         $('.video-vote:not(.btn-default)').html(voteButtonText());
       }
 
-      function updateAlreadyVotedButtons() {
+      function updateAlreadyVotedButtons(previousPosition) {
         $.each(videoVotes, function(key, value) {
-          videoVotes[key];
-          $('#vote_'+key).html((videoVotes[key])+'. Platz');
+          if(value > previousPosition) {
+            videoVotes[key]--;
+          }
+          $('#vote_'+key).html(videoVotes[key]+'. Platz');
         });
       }
 
