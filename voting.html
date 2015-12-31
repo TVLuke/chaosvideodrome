@@ -119,7 +119,7 @@
             $("#submitbutton").notify("Abgesendet", "success");
           } else {
             if(!isValidEmailAddress($('#email').val())) {
-              $("#submitbutton").notify("Eine gültige Emailadresse muss angegeben werden. Du erhällst eine Email mit einem link zum späteren Verändern deiner Abstimmung.", "error");
+              $("#submitbutton").notify("Eine gültige Emailadresse muss angegeben werden.", "error");
             } else {
               $("#submitbutton").notify("Du musst mindestens ein Video auswählen", "error");
             }
