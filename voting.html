@@ -157,7 +157,10 @@
           $('<div class="row"><div class="col-md-12" id="subtitle" style="margin-left: 20px"><i>'+getCorrectedText(obj.subtitle)+'</i></div></div>').appendTo(header);
           header.appendTo(panel);
           var panelBody = $('<div class="panel-body"></div>"');
-          $('<div class="row"><div class="col-md-4" id="image" style="margin-left: 20px"><img src="'+obj.thumb_url+'"/></div><div class="col-md-6" id="description">'+getCorrectedText(obj.description)+'</div><div class="col-md-1 vote"><button class="btn btn-primary video-vote" id="vote_'+getVideoId(obj.url)+'" data-videoid="'+getVideoId(obj.url)+'" role="button">'+voteButtonText()+'</button></div></div>').appendTo(panelBody);
+          <a href="#" class="thumbnail">
+      <img src="..." alt="...">
+    </a>
+          $('<div class="row"><div class="col-md-4" id="image"><div class="thumbnail"><img src="'+obj.thumb_url+'"/></div></div><div class="col-md-6" id="description">'+getCorrectedText(obj.description)+'</div><div class="col-md-1 vote"><button class="btn btn-primary video-vote" id="vote_'+getVideoId(obj.url)+'" data-videoid="'+getVideoId(obj.url)+'" role="button">'+voteButtonText()+'</button></div></div>').appendTo(panelBody);
           panelBody.appendTo(panel);
           var panelFooter = $('<div class="panel-footer"></div>');
           $('<div class="row"><div class="col-md-4"><span class="glyphicon glyphicon-time" aria-hidden="false"></span>  '+Math.round((obj.length)/60)+' min</div></div>').appendTo(panelFooter);
@@ -182,6 +185,7 @@
         $('#vote_'+videoUid).removeClass('btn-primary');
         $('#vote_'+videoUid).addClass('btn-default');
         updateButtonText();
+        updateAlreadyVotedButtons(previousPosition);
       }
 
       function unVoteForVideo(videoUid) {
@@ -194,8 +198,9 @@
       }
 
       function voteButtonText() {
-        var l = numberOfVideoVotes();
-        return (l+1)+'. Platz';
+        return "Auswählen";
+        //var l = numberOfVideoVotes();
+        //return (l+1)+'. Platz';
       }
 
       function numberOfVideoVotes() {
@@ -208,10 +213,8 @@
 
       function updateAlreadyVotedButtons(previousPosition) {
         $.each(videoVotes, function(key, value) {
-          if(value > previousPosition) {
-            videoVotes[key]--;
-            $('#vote_'+key).html(videoVotes[key]+'. Platz');
-          }
+          videoVotes[key]--;
+          $('#vote_'+key).html(videoVotes[key]+'. Platz');
         });
       }
 
