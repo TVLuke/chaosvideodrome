@@ -16,17 +16,31 @@
 
 
   <script>
-    var eventurl = "https://media.ccc.de/public/conferences/78";
+    var eventurl = "https://media.ccc.de/public/conferencesx/78";
     var votesurl = "https://script.google.com/macros/s/AKfycbx4CSdrTiaZEUbuQcxci7n9zzaPusWVL3-usBVIjc05CseGYDA/exec";
     var videourl = "https://media.ccc.de/public/events/"
 
     var graphArray = [];
 
     function getStuff() {
-      var eventdata;
 
-      $.get(eventurl, function(data) {
-        eventData = data;
+
+      $.ajax({
+          url: eventurl,
+          type: 'GET',
+          success: function(data) {
+            showEventData(data);
+          },
+          error: function(data) {
+            var sadpanda = $('<div id="sadpanda" style="position: fixed; top: 50%; left: 50%; margin-left: -250px; margin-top: -250px;"><img src = "sadpanda.png" width="500"/></div>');
+            sadpanda.appendTo('#main');
+            $("#sadpanda").notify("Daten konnten nicht angefordert werden...", {clickToHide: true, autoHide: false, className: 'error', position: 'bottom left'});
+          }
+      });
+    }
+
+    showEventData(data){
+        var eventData = data;
 
         $.get(votesurl, function(votes) {
           choiceArray = new Array(Object.keys(votes.dist).length);
@@ -55,8 +69,7 @@
             });
           });
         });
-      });
-    }
+      }
 
     function addWinnerToPage(video) {
       var panel = $('<div class="selectioncontainer panel panel-default"></div>');
