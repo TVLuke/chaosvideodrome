@@ -62,7 +62,7 @@
               barArray.push(video.title);
               //itterate through
               for(var j=1; j<number; j++) {
-                barArray.push(voteDist[j])
+                barArray.push(parseFloat(voteDist[j]));
               }
               graphArray.push(barArray);
             });
