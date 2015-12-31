@@ -43,7 +43,7 @@
             $('#advisory').remove();
             var sadpanda = $('<div id="sadpanda" style="position: fixed; top: 50%; left: 50%; margin-left: -250px; margin-top: -250px;"><img src = "sadpanda.png" width="500"/></div>');
             sadpanda.appendTo('#main');
-            $("#sadpanda").notify("Daten konnten nicht angefordert werden...", "error");
+            $("#sadpanda").notify("Daten konnten nicht angefordert werden...", "error", {elementPosition: 'bottom left'});
           }
       });
 
