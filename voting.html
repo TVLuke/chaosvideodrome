@@ -211,7 +211,7 @@
       function updateAlreadyVotedButtons() {
         $.each(videoVotes, function(key, value) {
           videoVotes[key]--;
-          $('#vote_'+key).html(videoVotes[key]+'. Platz');
+          $('#vote_'+key).html((videoVotes[key]+1)+'. Platz');
         });
       }
 
