@@ -32,7 +32,6 @@
       $( document ).ready(function() {
       showProgress();
         $.get(eventurl, function( data ) {
-          hideProgress();
           var randomizedList = [];
           var events = data.events;
           console.log(events);
@@ -117,6 +116,7 @@
     }
 
       function printList(randomizedList) {
+        hideProgress();
         $.each(randomizedList, function(i, obj) {
           var panel = $('<div class="selectioncontainer panel panel-default"></div>');
           var header = $('<div class="panel-heading"></div>');
@@ -197,7 +197,7 @@
         </div>
       </nav>
       <div id='main' style="padding: 50px; padding-top: 60px;">
-        <div id="spinner">
+        <div id="spinner" style="position: fixed; top: 50%; left: 50%;">
         Loading...
         </div>
       </div>
