@@ -130,6 +130,9 @@
           var panelBody = $('<div class="panel-body"></div>"');
           $('<div class="row"><div class="col-md-2" id="image" style="margin-left: 20px"><img src="'+obj.thumb_url+'"/></div><div class="col-md-8" id="description">'+getCorrectedText(obj.description)+'</div><div class="col-md-1 vote"><button class="btn btn-primary video-vote" id="vote_'+getVideoId(obj.url)+'" data-videoid="'+getVideoId(obj.url)+'" role="button">'+voteButtonText()+'</button></div></div>').appendTo(panelBody);
           panelBody.appendTo(panel);
+          var panelFooter = $('<div class="panel-footer"></div>');
+          $('<div class="row"><div class="col-md-4"><span class="glyphicon glyphicon-time" aria-hidden="false"></span>'+(obj.length)/60+'</div></div>').appendTo(pannelFooter);
+          panelFooter.appendTo(panel);
           panel.appendTo('#main');
         });
       }
