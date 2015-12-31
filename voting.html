@@ -39,7 +39,9 @@
           },
           error: function(data) {
             hideProgress();
-            $("#main").notify("Daten konnten nicht geladen werden.", "error");
+            var sadpanda = $('<div id="sadpanda" style="position: fixed; top: 50%; left: 50%; margin-left: -50px; margin-top: -50px;><scr img="sadpanda.png"/></div>')
+            sadpanda.appendTo('#main');
+            $("#sadpanda").notify("Daten unvollständig", "error");
           }
       });
 
@@ -114,8 +116,7 @@
             $.ajax({url: form.attr('action'), method:'post', data:{email:$('#email').val(), votes:JSON.stringify(videoVotes)}});
             $("#submitbutton").notify("Abgesendet", "success");
           } else {
-            $('<div id="sadpanda" style="position: fixed; top: 50%; left: 50%; margin-left: -50px; margin-top: -50px;><scr img="sadpanda.png"/></div>')
-            $("#sadpanda").notify("Daten unvollständig", "error");
+            $("#submitbutton").notify("Daten unvollständig", "error");
           }
       });
     });
