@@ -118,7 +118,11 @@
             $.ajax({url: form.attr('action'), method:'post', data:{email:$('#email').val(), votes:JSON.stringify(videoVotes)}});
             $("#submitbutton").notify("Abgesendet", "success");
           } else {
-            $("#submitbutton").notify("Daten unvollständig", "error");
+            if(!isValidEmailAddress($('#email').val())) {
+              $("#submitbutton").notify("Eine gültige Emailadresse muss angegeben werden. Du erhällst eine Email mit einem link zum späteren Verändern deiner Abstimmung.", "error");
+            } else {
+              $("#submitbutton").notify("Du musst mindestens ein Video auswählen", "error");
+            }
           }
       });
     });
