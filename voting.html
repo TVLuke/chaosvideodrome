@@ -32,9 +32,7 @@
 
         $.get(eventurl, function( data ) {
           var randomizedList = [];
-          alert("a");
           var events = data.events;
-          alert(data.events.length);
           console.log(events);
           while(events.length > 0) {
             var randomnumber = Math.floor((Math.random() * events.length));
@@ -45,7 +43,6 @@
                 events.splice(index, 1);
             }
           }
-          alert(randomizedList.length);
           console.log(randomizedList);
           var uid = $.urlParam('uid');
           if(!(uid === undefined || uid == null)) {
@@ -53,26 +50,15 @@
             $.get(getVotesUrl+'?uid='+uid, function(voteData) {
               var startelements = [];
               var keys = Object.keys(voteData.votes);
-              alert(Object.keys(voteData.votes));
-              //iterate through the votes
               var keyslength = Object.keys(voteData.votes).length;
-              alert(keyslength);
               for(var i=0; i<keyslength ; i++) {
                 for(var k=0; k<keyslength ; k++) {
                   var key = keys[k];
-                  alert(key+" "+voteData.votes[key]);
                   if(voteData.votes[key] == (i+1)) {
-                    alert((i+1)+": "+key);
                     console.log(randomizedList);
                     $.each(randomizedList, function(j, obj) {
                       if(!(obj == undefined) && getVideoId(obj.url) == key) {
-                        alert(i);
-                        alert(k);
-                        alert(j);
-                        alert(obj.title);
                         startelements.push(obj);
-                        alert(JSON.stringify(obj));
-                        alert(randomizedList.length);
                         var index = randomizedList.indexOf(obj);
                         if (index > -1) {
                             randomizedList.splice(index, 1);
