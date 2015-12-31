@@ -71,7 +71,7 @@
                 }
               }
               randomizedList = startelements.concat(randomizedList);
-              $('#email').val(data.email);
+              $('#email').val(voteData.email);
               printList(randomizedList);
               $.each(startelements, function(j, obj) {
                 voteForVideo(getVideoId(obj.url));
