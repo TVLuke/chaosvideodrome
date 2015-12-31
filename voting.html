@@ -101,7 +101,7 @@
           var form = $(e.target);
 
           $.ajax({url: form.attr('action'), method:'post', data:{email:$('#email').val(), votes:JSON.stringify(videoVotes)}});
-          $(".btn btn-default").notify("Hello Box");
+          $("#submitbutton").notify("Hello Box");
       });
     });
 
@@ -200,7 +200,7 @@
           </div>
           <input type="hidden" name="loltest" value=JSON.stringify(videoVotes);>
           <span class="glyphicon glyphicon-question-sign" title="Mithilfe der Adresse kannst Du auch nachher das Ranking ändern" aria-hidden="false"></span>
-          <button type="submit" formmethod="post" class="btn btn-default">Abstimmen</button>
+          <button type="submit" formmethod="post" class="btn btn-default" id="submitbutton">Abstimmen</button>
         </form>
         <a class="navbar-brand" href="http://tvluke.github.io/congressEverywhen/results.html">Ergebnis</a>
         </div>
