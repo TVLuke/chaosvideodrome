@@ -32,7 +32,18 @@
 
       $( document ).ready(function() {
       showProgress();
-        $.get(eventurl, function( data ) {
+      $.ajax({
+          url: eventurl,
+          type: 'GET',
+          success: 'showEventData',
+          },
+          error: function(data) {
+            hideProgress();
+            $("#main").notify("Daten konnten nicht geladen werden.", "error");
+          }
+      });
+
+      function showEventData(){
           var randomizedList = [];
           var events = data.events;
           console.log(events);
@@ -86,7 +97,7 @@
           } else {
             printList(randomizedList);
           }
-        });
+        }
 
         $('#main').on('click', '.video-vote:not(.btn-default)', function(e) {
           voteForVideo($(e.target).data('videoid'));
@@ -103,7 +114,8 @@
             $.ajax({url: form.attr('action'), method:'post', data:{email:$('#email').val(), votes:JSON.stringify(videoVotes)}});
             $("#submitbutton").notify("Abgesendet", "success");
           } else {
-            $("#submitbutton").notify("Daten unvollständig", "error");
+            $('<div id="sadpanda" style="position: fixed; top: 50%; left: 50%; margin-left: -50px; margin-top: -50px;><scr img="sadpanda.png"/></div>')
+            $("#sadpanda").notify("Daten unvollständig", "error");
           }
       });
     });
