@@ -17,6 +17,7 @@
       //var eventurl = "https://script.google.com/macros/s/AKfycbxljXh61nQFRsCuA-6YYlDBRstasi13eAf3mEwjuqBM3wxTkngQ/exec";
       var getVotesUrl="https://script.google.com/macros/s/AKfycbyPTyCyN4okcbjQ4-TL9K3JaeUNv-6agQ16cg9AE4Cdrq94KJOS/exec";
       var videoVotes = {};
+      var spinnerVisible = false;
 
       $.urlParam = function(name){
           var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
@@ -29,8 +30,9 @@
       }
 
       $( document ).ready(function() {
-
+      showProgress();
         $.get(eventurl, function( data ) {
+          hideProgress();
           var randomizedList = [];
           var events = data.events;
           console.log(events);
@@ -97,6 +99,22 @@
         $.ajax({url: form.attr('action'), method:'post', data:{email:$('#email').val(), votes:JSON.stringify(videoVotes)}});
       });
     });
+
+    function showProgress() {
+        if (!spinnerVisible) {
+            $("div#spinner").fadeIn("fast");
+            spinnerVisible = true;
+        }
+    }
+
+    function hideProgress() {
+        if (spinnerVisible) {
+            var spinner = $("div#spinner");
+            spinner.stop();
+            spinner.fadeOut("fast");
+            spinnerVisible = false;
+        }
+    }
 
       function printList(randomizedList) {
         $.each(randomizedList, function(i, obj) {
@@ -179,6 +197,9 @@
         </div>
       </nav>
       <div id='main' style="padding: 50px; padding-top: 60px;">
+        <div id="spinner">
+        Loading...
+        </div>
       </div>
     </body>
 </html>
