@@ -67,6 +67,9 @@
       var panelBody = $('<div class="panel-body"></div>"');
       $('<div class="row"><div class="col-md-2" id="image" style="margin-left: 20px"><img src="'+video.thumb_url+'"/></div><div class="col-md-8" id="description">'+getCorrectedText(video.description)+'</div></div>').appendTo(panelBody);
       panelBody.appendTo(panel);
+      var panelFooter = $('<div class="panel-footer"></div>');
+      $('<div class="row"><div class="col-md-4"><span class="glyphicon glyphicon-time" aria-hidden="false"></span>  '+Math.round((video.length)/60)+' min</div></div>').appendTo(panelFooter);
+      panelFooter.appendTo(panel);
       panel.appendTo('#winner');
     }
 
