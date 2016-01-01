@@ -11,10 +11,19 @@
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <!-- Nice looking notifications -->
     <script src="javascript/notify.min.js"></script>
 
+    <!-- this makes sure resizing windows will not result in overlaping elements -->
     <style>
-    body { padding-top: 70px; }
+    body {
+      padding-top: 60px;
+    }
+    @media (max-width: 979px) {
+      body {
+        padding-top: 0px;
+      }
+    }
     </style>
     <script>
       var eventurl="https://media.ccc.de/public/conferences/78";
@@ -242,7 +251,7 @@
         <a class="navbar-brand" href="http://tvluke.github.io/congressEverywhen/results.html">Ergebnis</a>
         </div>
       </nav>
-      <div class="alert alert-info alert-dismissible" id="advisory" role="alert">
+      <div class="alert alert-info alert-dismissible" id="advisory" role="alert" style="padding: 50px; padding-top: 60px;">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
         </button>
         <strong>Was ist hier los?</strong><p>Hier kannst Du abstimmen, welche Videos wir uns im <i>nbsp</i> ansehen möchten. Das funtioniert ganz einfach. Wähle aus dieser Liste die Videos aus, die du sehen willst in der Reihenfolge, in der du sie gerne sehen würdest. Dabei entsteht ein ranking. </p>
