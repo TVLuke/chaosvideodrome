@@ -17,6 +17,7 @@
     <!-- this makes sure resizing windows will not result in overlaping elements -->
     <style>
     body {
+      padding: 50px;
       padding-top: 60px;
     }
     @media (max-width: 979px) {
@@ -236,9 +237,7 @@
       <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
           <div class="navbar-header">
-            <a class="navbar-brand" href="#">
               <img alt="Brand" src="logo_rc1.svg" height="40" style="margin-top: -10px">
-            </a>
           </div>
           <form id="votesubmit" action="https://script.google.com/macros/s/AKfycbxawb3ZjEvSqHK_6ocDIy-8wQjHDT-DtAH0607rtMaXVdc9AQ/exec" method="post" class="navbar-form navbar-left">
           <div class="form-group">
@@ -259,7 +258,7 @@
         <p>Wenn du fertig bist, gebe eine Emailadresse an und sende deine Daten ab. Du erhällst eine Email mit einem Link, du kannst dein Ränking jederzeit ändern und erneut abschicken.</p>
         <p>Mehr technische Details findet du <a href="http://tvluke.github.io/congressEverywhen/details.html">hier</a>.
       </div>
-      <div id='main' style="padding: 50px; padding-top: 60px;">
+      <div id='main'>
         <div id="spinner" style="position: fixed; top: 50%; left: 50%; margin-left: -50px; margin-top: -50px;">
           <img src ="spinner.gif"/>
         </div>
